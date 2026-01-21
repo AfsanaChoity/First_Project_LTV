@@ -12,7 +12,19 @@ Route::get('/', function(){
     return response()->json(['message'=> 'Server is running']);
 });
 
-Route::post('signup', [UserAuthController::class, 'signup']);
+// Auth routes
+Route::prefix('auth')->group(function (){
 
-// Include Auth routes
-// require __DIR__.'/api/v1/authApi.php';
+    // User Signup
+    Route::post('signup', action: [UserAuthController::class, 'signup']);
+
+    // User Login
+    Route::post('login', action: [UserAuthController::class, 'login'] );
+
+
+
+    // Email Verification
+    Route::get('email/verify/{id}/{hash}', [UserAuthController::class, 'verifyEmail'])
+        ->middleware(['signed'])
+        ->name('verification.verify'); 
+});
