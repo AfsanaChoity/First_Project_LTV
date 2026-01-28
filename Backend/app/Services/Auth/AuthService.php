@@ -26,7 +26,7 @@ class AuthService
             ]);
         }
 
-        // Email verification check (recommended)
+        // Email verification check 
         // if (!$user->hasVerifiedEmail()) {
         //     throw ValidationException::withMessages([
         //         'email' => ['Please verify your email first.'],
